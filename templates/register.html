@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Registration</title>
+</head>
+<body>
+
+{% block content %}
+
+<div class="container">
+    <div class="row align-items-center justify-content-center">
+        <!-- Left Column (12 columns on mobile, 8 columns on larger screens) -->
+        <div class="col-md-8 col-12">
+            <!-- Your SVG image or static image -->
+            <img src="img/img.svg" alt="Image" class="img-fluid d-md-block d-none">
+        </div>
+
+        <!-- Right Column (12 columns on mobile, 4 columns on larger screens) -->
+        <div class="col-md-4 col-12 d-flex flex-column">
+            <!-- Another SVG image at the top (hidden on mobile) -->
+            <img src="img/img2.svg" alt="Another Image" class="img-fluid mb-3 w-50 d-block">
+            <div>
+                <h2 class="text-danger">
+                    REGISTER
+                </h2>
+                <!-- Your login form code goes here -->
+                <form method="POST" action="/register" class="shadow-lg p-3 mb-5 bg-white rounded">
+                    <!-- Your login form fields here -->
+                    <div class="form-group">
+                        <label for="username">Name:</label>
+                        <input type="text" id="username" name="username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Register</button>
+                    <!-- Add the registration button -->
+                    <a href="/login" class="text-success mt-2 ms-2">Login</a>
+                </form>
+                
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
