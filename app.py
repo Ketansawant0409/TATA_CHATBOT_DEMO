@@ -11,7 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 from flask_bcrypt import Bcrypt
 
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'  
