@@ -11,7 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 from flask_bcrypt import Bcrypt
 
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'  
@@ -83,10 +83,6 @@ def dashboard():
                 question = request.form.get('question')
                 answer = process_pdf(question)
                 return jsonify({'answer': answer})
-            elif 'summary' in request.form:
-                summary = request.form.get('summary')
-                summary_result = generate_summary(summary)
-                return jsonify({'summary_result': summary_result})
         else:
             return render_template('dashboard.html', current_user=user)
     flash('You need to login first')
@@ -133,11 +129,17 @@ def process_pdf(question):
     x = chain.run(input_documents=docs, question=question)
     return x
 
-# @app.route('/generate_summary',methods=['GET', 'POST'])
-def generate_summary(summary_text):
-    question=f"give me property details {summary_text}?"
-    return process_pdf(question)
-    
+@app.route('/generate_summary', methods=['GET'])
+def generate_summary():
+    if 'user_id' in session:
+        user = session.get(session['user_id'])
+        summary_result = process_pdf("give me property details anvika pride in the form like building name, address, size ,owners,etc go on ?")
+        
+        return render_template('summary.html', current_user=user, summary_result=summary_result)
+    flash('You need to login first')
+    return redirect(url_for('login'))
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

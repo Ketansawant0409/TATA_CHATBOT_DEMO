@@ -20,21 +20,15 @@
     </nav>
 
     <div class="mt-2 mb-4 shadow-lg p-4 bg-body rounded">
-        <h5 class="mb-4">Ask your query</h5>
+        <div class="d-flex justify-content-between mb-4">
+            <h5 class="mb-0">Ask your Query</h5>
+            <a href="/generate_summary" class="btn btn-secondary">Generate Summary</a>
+        </div>
         <form id="chat-form" method="post">
             <div class="mb-3">
                 <input type="text" name="question" id="question" class="form-control" placeholder="Type your question here">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-
-        <h5 class="mt-4">Generate Summary</h5>
-
-        <form id="summary-form" method="post">
-            <div class="mb-3">
-                <input type="text" name="summary" id="summary" class="form-control" placeholder="Type your summary here">
-            </div>
-            <button type="submit" class="btn btn-secondary">Generate Summary</button>
         </form>
 
         <h5 class="mt-4">Solution</h5>
@@ -56,23 +50,8 @@
         <button id="copyButton" onclick="copyToClipboard()" class="btn btn-success mt-3">Copy Answer</button>
         <button id="clearButton" onclick="clearAnswer()" class="btn btn-danger mt-3">Clear Answer</button>
     </div>
+
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        $("#summary-form").submit(function(event) {
-            event.preventDefault();
-            var summaryText = $("#summary").val();
-            $.ajax({
-                type: "POST",
-                url: "/dashboard",
-                data: {summary: summaryText},
-                success: function(response) {
-                    $("#solutionText").text(response.summary_result);
-                }
-            });
-        });
-    });
-</script>
 {% endblock content %}
